@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS subscription(
     CONSTRAINT fk_member FOREIGN KEY(member_id)
         REFERENCES member(id)
         ON DELETE CASCADE,
-    CONSTRAINT fk_plan FOREIGN KEY(id)
+    CONSTRAINT fk_plan FOREIGN KEY(plan_id)
         REFERENCES plan(id)
         ON DELETE CASCADE
 );
