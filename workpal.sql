@@ -23,18 +23,27 @@ CREATE TABLE IF NOT EXISTS admin(
     CONSTRAINT pk_user_admin PRIMARY KEY(id),
     CONSTRAINT must_be_unique_email_admin UNIQUE(email)
 )INHERITS(users);
+-- to respect the data integrity, by maintaining the role for each row
+ALTER TABLE admin
+ALTER COLUMN role_name SET DEFAULT 'admin';
 -- @block
 CREATE TABLE IF NOT EXISTS member(
     job VARCHAR(30),
     CONSTRAINT pk_user_member PRIMARY KEY(id),
     CONSTRAINT must_be_unique_email_member UNIQUE(email)
 )INHERITS(users);
+-- to respect the data integrity, by maintaining the role for each row
+ALTER TABLE member
+ALTER COLUMN role_name SET DEFAULT 'member';
 -- @block
 CREATE TABLE IF NOT EXISTS manager(
     departement VARCHAR(30),
     CONSTRAINT pk_user_manager PRIMARY KEY(id),
     CONSTRAINT must_be_unique_email_manager UNIQUE(email)
 )INHERITS(users);
+-- to respect the data integrity, by maintaining the role for each row
+ALTER TABLE manager
+ALTER COLUMN role_name SET DEFAULT 'manager';
 -- @block
 CREATE TABLE IF NOT EXISTS spaces(
     id SERIAL,
@@ -94,6 +103,10 @@ CREATE TABLE IF NOT EXISTS subscription(
         REFERENCES plan(id)
         ON DELETE CASCADE
 );
+ALTER TABLE subscription
+ALTER COLUMN is_expired SET DEFAULT FALSE;
+ALTER TABLE subscription
+ALTER COLUMN is_canceled SET DEFAULT FALSE;
 -- @block
 CREATE TYPE event_type AS ENUM('conference', 'seminar', 'meeting', 'workshop');
 -- @block
