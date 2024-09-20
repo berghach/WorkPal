@@ -1,11 +1,13 @@
+package connection;
 /**
- * PostgreSQLConnection
+ * DBConnection
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-public class PostgreSQLConnection {
+public class DBConnection {
     public static void main(String[] args) {
+       
         String url = "jdbc:postgresql://localhost:5432/workpal";
         String user = "postgres";
         String password = "post2001";
